@@ -7,4 +7,13 @@ class Homebrew < ActiveRecord::Base
     uniqueness: { scope: :date_brewed,
       message: "You already added this beer." }
   validates :date_brewed, presence: true
+
+  def year_brewed
+    date_brewed.year
+  end
+
+  def month_brewed
+    month = date_brewed.month
+    Date::MONTHNAMES[month]
+  end
 end
