@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resources :homebrews, only: [:new, :create]
   end
+
+  resources :homebrews, only: :show
 end

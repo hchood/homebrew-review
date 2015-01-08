@@ -1,6 +1,11 @@
 class HomebrewsController < ApplicationController
   def index
   end
+
+  def show
+    @homebrew = Homebrew.find(params[:id])
+  end
+
   def new
     @homebrew = Homebrew.new
   end
