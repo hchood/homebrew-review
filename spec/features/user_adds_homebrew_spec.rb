@@ -25,11 +25,10 @@ feature "User adds a homebrew", %Q{
       end
 
       scenario "with required attributes" do
-        save_and_open_page
         fill_in "Name", with: @beer.name
-        choose @beer.year_brewed, from: "year"
-        choose @beer.month_brewed, from: "month"
-        choose @beer.day_brewed, from: "day"
+        select @beer.year_brewed, from: "homebrew_date_brewed_1i"
+        select @beer.month_brewed, from: "homebrew_date_brewed_2i"
+        select @beer.date_brewed.day, from: "homebrew_date_brewed_3i"
         click_on "Add my beer!"
 
         expect(page).to have_content "Thanks! Your beer has been added."
