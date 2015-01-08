@@ -29,6 +29,7 @@ feature "User adds a homebrew", %Q{
         select @beer.year_brewed, from: "homebrew_date_brewed_1i"
         select @beer.month_brewed, from: "homebrew_date_brewed_2i"
         select @beer.date_brewed.day, from: "homebrew_date_brewed_3i"
+        fill_in "Description", with: @beer.description
         click_on "Add my beer!"
 
         expect(page).to have_content "Thanks! Your beer has been added."
