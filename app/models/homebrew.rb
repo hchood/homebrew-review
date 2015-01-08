@@ -16,4 +16,8 @@ class Homebrew < ActiveRecord::Base
     month = date_brewed.month
     Date::MONTHNAMES[month]
   end
+
+  def brewer_name
+    "#{user.first_name} #{user.last_name}"
+  end
 end
