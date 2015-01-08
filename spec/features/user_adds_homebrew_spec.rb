@@ -17,7 +17,7 @@ feature "User adds a homebrew", %Q{
 
     context "authenticated user" do
       before :each do
-        @user = FactoryGirl.build_stubbed(:user)
+        @user = FactoryGirl.create(:user)
         @beer = FactoryGirl.build(:homebrew)
 
         login_as(@user)
