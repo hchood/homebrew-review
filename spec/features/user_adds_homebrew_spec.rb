@@ -47,7 +47,19 @@ feature "User adds a homebrew", %Q{
         end
       end
 
-      scenario "adds the same beer"
+      scenario "adds the same beer" do
+        @beer.save
+
+        fill_in "Name", with: @beer.name
+        select @beer.year_brewed, from: "homebrew_date_brewed_1i"
+        select @beer.month_brewed, from: "homebrew_date_brewed_2i"
+        select @beer.date_brewed.day, from: "homebrew_date_brewed_3i"
+        fill_in "Description", with: @beer.description
+        click_on "Add my beer!"
+
+        expect(page).to have_content "Oops! Your beer could not be saved."
+        expect(page).to have_content "You already added this beer."
+      end
     end
 
     context "unauthenticated user" do
