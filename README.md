@@ -1,5 +1,9 @@
 # Homebrew-review
 
+## Overview
+
+This is a sample app for reviewing homebrewed beer built with Thoughtbot's [suspenders](https://github.com/thoughtbot/suspenders).  I'm building out a simple web app first, then will build an API using [jbuilder](https://github.com/rails/jbuilder), [prmd](https://github.com/interagent/prmd), [versionist](https://github.com/bploetz/versionist), and some other tools to mess around with building APIs and validating with JSON Schema.
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
