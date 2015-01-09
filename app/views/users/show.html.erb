@@ -22,3 +22,16 @@
     </ul>
   <% end %>
 </div>
+
+<div>
+  <% if @user.all_friends.empty? %>
+    <%= "#{@user.first_name} hasn't made any friends yet." %>
+  <% else %>
+    <%= "#{@user.first_name}'s friends:" %>
+    <ul>
+      <% @user.all_friends.each do |friend| %>
+        <li><%= link_to friend.full_name, user_path(friend) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
