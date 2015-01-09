@@ -7,7 +7,7 @@ feature "User adds a homebrew", %Q{
   } do
 
   # Acceptance Criteria:
-  # - [x] I must be logged in to add a homebrew
+  # - [x] I must be logged in to add a homebrew.
   # - [x] I must provide a name.
   # - [x] I must provide a date the batch was completed.
   # - [x] The date brewed must not be in the future.
@@ -15,11 +15,15 @@ feature "User adds a homebrew", %Q{
   # - [x] If the name/date combination are not unique, I receive an error message.
   # - [x] I can optionally provide a description.
   # - [x] If I do not provide all of the required fields, I receive an error message.
+  # - [ ] I can tag my homebrew with multiple tags.
 
   context "authenticated user" do
     before :each do
       @user = FactoryGirl.create(:user)
       @beer = FactoryGirl.build(:homebrew)
+
+      @tags = ["IPA", "stout", "hoppy"].map { |tag|
+        FactoryGirl.create(:tag, name: tag) }
 
       login_as(@user)
       click_on "Add a homebrew"
@@ -31,11 +35,15 @@ feature "User adds a homebrew", %Q{
       select @beer.month_brewed, from: "homebrew_date_brewed_2i"
       select @beer.date_brewed.day, from: "homebrew_date_brewed_3i"
       fill_in "Description", with: @beer.description
+      check "stout"
+      check "hoppy"
       click_on "Add my beer!"
 
       expect(page).to have_content "Thanks! Your beer has been added."
       expect(page).to have_content @beer.name
       expect(page).to have_content @beer.description
+      expect(page).to have_content "stout"
+      expect(page).to have_content "hoppy"
     end
 
     scenario "with missing attributes" do
