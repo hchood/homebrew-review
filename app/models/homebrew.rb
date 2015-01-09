@@ -2,6 +2,8 @@ class Homebrew < ActiveRecord::Base
   paginates_per 20
 
   belongs_to :user
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   validates :user, presence: true
   validates :name,
@@ -22,6 +24,11 @@ class Homebrew < ActiveRecord::Base
 
   def brewer_name
     "#{user.first_name} #{user.last_name}"
+  end
+
+  def tag_names
+    names = tags.pluck(:name).sort_by { |name| name.downcase }
+    names.join(", ")
   end
 
   def date_brewed_cannot_be_in_future
