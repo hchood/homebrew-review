@@ -25,6 +25,7 @@ gem "title"
 gem "uglifier"
 gem "unicorn"
 gem "devise"
+gem "kaminari"
 
 group :development do
   gem "spring"
