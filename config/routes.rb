@@ -3,9 +3,5 @@ Rails.application.routes.draw do
 
   root "homebrews#index"
 
-  resources :users, only: [] do
-    resources :homebrews, only: [:new, :create]
-  end
-
-  resources :homebrews, only: :show
+  resources :homebrews, only: [:show, :new, :create]
 end
