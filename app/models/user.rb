@@ -6,7 +6,19 @@ class User < ActiveRecord::Base
 
   paginates_per 20
 
-  has_many :homebrews, dependent: :destroy
+  has_many :homebrews,
+    dependent: :destroy
+  has_many :friendships,
+    dependent: :destroy
+  has_many :inverse_friendships,
+    class_name: "Friendship",
+    foreign_key: :friend_id,
+    dependent: :destroy
+  has_many :friends,
+    through: :friendships
+  has_many :inverse_friends,
+    through: :inverse_friendships,
+    source: :user
 
   validates :first_name, presence: true
   validates :last_name, presence: true
