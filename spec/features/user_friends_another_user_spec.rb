@@ -62,7 +62,19 @@ feature "User friends another user", %Q{
   end
 
   context "unauthenticated user" do
-    scenario "cannot access user index page"
-    scenario "cannot access user profile page"
+    scenario "cannot access user index page" do
+      visit users_path
+
+      expect(page).to have_content "You need to sign in or sign up before continuing."
+      expect(page).to_not have_content "All users"
+    end
+
+    scenario "cannot access user profile page" do
+      user = FactoryGirl.create(:user)
+      visit user_path(user)
+
+      expect(page).to have_content "You need to sign in or sign up before continuing."
+      expect(page).to_not have_content user.full_name
+    end
   end
 end
