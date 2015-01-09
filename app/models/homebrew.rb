@@ -26,6 +26,11 @@ class Homebrew < ActiveRecord::Base
     "#{user.first_name} #{user.last_name}"
   end
 
+  def tag_names
+    names = tags.pluck(:name).sort_by { |name| name.downcase }
+    names.join(", ")
+  end
+
   def date_brewed_cannot_be_in_future
     errors.add(:date_brewed, "can't be in the future") if
       !date_brewed.blank? && date_brewed > Date.today
