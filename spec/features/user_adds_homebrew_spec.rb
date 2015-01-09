@@ -7,13 +7,14 @@ feature "User adds a homebrew", %Q{
   } do
 
     # Acceptance Criteria:
-    # - [ ] I must be logged in to add a homebrew
-    # - [ ] I must provide a name.
-    # - [ ] I must provide a date the batch was completed.
-    # - [ ] The combination of name and date must be unique.
-    # - [ ] If the name/date combination are not unique, I recieve an error message.
-    # - [ ] I can optionally provide a description.
-    # - [ ] If I do not provide all of the required fields, I receive an error message.
+    # - [x] I must be logged in to add a homebrew
+    # - [x] I must provide a name.
+    # - [x] I must provide a date the batch was completed.
+    # - [x] The date brewed must not be in the future.
+    # - [x] The combination of name and date must be unique.
+    # - [x] If the name/date combination are not unique, I receive an error message.
+    # - [x] I can optionally provide a description.
+    # - [x] If I do not provide all of the required fields, I receive an error message.
 
     context "authenticated user" do
       before :each do
