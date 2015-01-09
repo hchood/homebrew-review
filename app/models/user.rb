@@ -39,4 +39,9 @@ class User < ActiveRecord::Base
     friendships.find_by(friend: user) ||
       inverse_friendships.find_by(user: user)
   end
+
+  def all_friends
+    friends_list = friends + inverse_friends
+    friends_list.sort_by { |friend| [friend.last_name, friend.first_name] }
+  end
 end
