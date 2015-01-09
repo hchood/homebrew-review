@@ -2,14 +2,14 @@ require "rails_helper"
 
 feature "User views list of users", %Q{
   As an authenticated user
-  I view a list of other users
+  I want to view a list of other users
   So that I can find my friends
   } do
 
     # Acceptance Criteria:
-    # - [ ] I must be authenticated to view the users index page.
-    # - [ ] I see a list of users organized alphabetically by last name, then first name.
-    # - [ ] The page displays 20 users at a time.
+    # - [x] I must be authenticated to view the users index page.
+    # - [x] I see a list of users organized alphabetically by last name, then first name.
+    # - [x] The page displays 20 users at a time.
 
   context "authenticated user" do
     scenario "visits users index page" do
@@ -20,7 +20,7 @@ feature "User views list of users", %Q{
       last_user = users.last
 
       login_as(users.first)
-      visit users_path
+      click_on "Browse users"
 
       first_twenty_users.each do |user|
         expect(page).to have_link user.full_name
