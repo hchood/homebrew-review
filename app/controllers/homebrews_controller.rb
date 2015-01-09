@@ -15,6 +15,9 @@ class HomebrewsController < ApplicationController
 
     if @homebrew.save
       redirect_to @homebrew, notice: "Thanks! Your beer has been added."
+    else
+      flash.now[:notice] =  "Oops! Your beer could not be saved."
+      render :new
     end
   end
 

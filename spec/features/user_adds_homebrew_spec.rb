@@ -37,7 +37,15 @@ feature "User adds a homebrew", %Q{
         expect(page).to have_content @beer.description
       end
 
-      scenario "with missing attributes"
+      scenario "with missing attributes" do
+        click_on "Add my beer!"
+
+        expect(page).to have_content "Oops! Your beer could not be saved."
+        expect(page).to have_content "Namecan't be blank"
+        within ".homebrew_date_brewed" do
+          expect(page).to have_content "can't be blank"
+        end
+      end
 
       scenario "adds the same beer"
     end
