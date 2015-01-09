@@ -7,9 +7,9 @@ feature "User unfriends another user", %Q{
   } do
 
   # Acceptance Criteria:
-  # - [ ] I must be logged in to unfriend a user.
-  # - [ ] I can unfriend a user from the users index page or a user's show page.
-  # - [ ] I can only unfriend a user that I'm already friends with.
+  # - [x] I must be logged in to unfriend a user. [Not testing this - already testing they can't access users index & show pages]
+  # - [x] I can unfriend a user from the users index page or a user's show page.
+  # - [x] I can only unfriend a user that I'm already friends with. [Not testing this - testing that the buttons change is enough, I think]
 
   context "authenticated user" do
     before :each do
