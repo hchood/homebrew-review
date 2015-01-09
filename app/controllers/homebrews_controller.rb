@@ -2,7 +2,7 @@ class HomebrewsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @homebrews = Homebrew.order(date_brewed: :desc)
+    @homebrews = Homebrew.order(date_brewed: :desc).page(params[:page])
   end
 
   def show
