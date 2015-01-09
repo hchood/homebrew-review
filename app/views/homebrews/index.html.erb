@@ -1,0 +1,7 @@
+<h3>All homebrews</h3>
+
+<ul>
+  <%= @homebrews.each do |brew| %>
+    <li><%= link_to brew.name, homebrew_path(brew) %></li>
+  <% end %>
+</ul>
