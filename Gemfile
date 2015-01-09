@@ -40,6 +40,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.0.0"
+  gem "faker"
 end
 
 group :test do
@@ -50,6 +51,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
+  gem "valid_attribute"
 end
 
 group :staging, :production do
