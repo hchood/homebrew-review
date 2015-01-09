@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :friendships, only: :create
   end
 
+  resources :friendships, only: :destroy
+
   resources :homebrews, only: [:index, :show, :new, :create]
 end

@@ -28,6 +28,15 @@ class User < ActiveRecord::Base
   end
 
   def can_friend?(user)
-    self != user
+    self != user && !friends_with?(user)
+  end
+
+  def friends_with?(user)
+    !friendship_for(user).nil?
+  end
+
+  def friendship_for(user)
+    friendships.find_by(friend: user) ||
+      inverse_friendships.find_by(user: user)
   end
 end

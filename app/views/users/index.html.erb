@@ -4,8 +4,10 @@
   <% @users.each do |user| %>
     <div>
       <%= link_to user.full_name, user_path(user) %>
-      <% if current_user.can_friend?(user) %>
+      <% if user_signed_in? && current_user.can_friend?(user) %>
         <%= button_to "Add friend", user_friendships_path(user) %>
+      <% elsif user_signed_in? && current_user.friends_with?(user) %>
+        <%= button_to "Remove friend", friendship_path(current_user.friendship_for(user)), method: :delete %>
       <% end %>
     </div>
   <% end %>
