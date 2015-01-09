@@ -63,10 +63,17 @@ feature "User adds a homebrew", %Q{
     end
 
     context "unauthenticated user" do
-      scenario "cannot add a homebrew" do
+      scenario "link to add a homebrew not displayed" do
         visit "/"
 
         expect(page).to_not have_content "Add a homebrew"
+      end
+
+      scenario "cannot visit new homebrew form" do
+        visit new_homebrew_path
+
+        expect(page).to have_content "You need to sign in or sign up before continuing."
+        expect(page).to_not have_content "Add my beer!"
       end
     end
   end
