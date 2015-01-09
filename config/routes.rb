@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   root "homebrews#index"
 
+  resources :users, only: [:index, :show]
   resources :homebrews, only: [:index, :show, :new, :create]
 end

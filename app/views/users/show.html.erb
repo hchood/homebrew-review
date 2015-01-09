@@ -1,0 +1,14 @@
+<h3><%= "#{@user.first_name} #{@user.last_name}"%></h3>
+
+<div>
+  <% if @user.homebrews.empty? %>
+    <%= "#{@user.first_name} hasn't added any homebrews yet." %>
+  <% else %>
+    <%= "#{@user.first_name}'s homebrews:" %>
+    <ul>
+      <% @user.homebrews.each do |brew| %>
+        <li><%= link_to "#{brew.name} (#{brew.date_brewed})", homebrew_path(brew) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
