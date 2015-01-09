@@ -1,5 +1,15 @@
 <h3><%= "#{@user.first_name} #{@user.last_name}"%></h3>
 
+<% if user_signed_in? %>
+  <div>
+    <% if current_user.can_friend?(@user) %>
+      <%= button_to "Add friend", user_friendships_path(@user) %>
+    <% elsif user_signed_in? && current_user.friends_with?(@user) %>
+      <%= button_to "Remove friend", friendship_path(current_user.friendship_for(@user)), method: :delete %>
+    <% end %>
+  </div>
+<% end %>
+
 <div>
   <% if @user.homebrews.empty? %>
     <%= "#{@user.first_name} hasn't added any homebrews yet." %>
