@@ -4,6 +4,7 @@ RSpec.describe Homebrew, :type => :model do
   let!(:homebrew) { FactoryGirl.create(:homebrew) }
 
   it { should belong_to :user }
+  it { should have_many :reviews }
   it { should have_many :taggings }
   it { should have_many(:tags).through(:taggings) }
 
