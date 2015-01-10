@@ -44,4 +44,8 @@ class User < ActiveRecord::Base
     friends_list = friends + inverse_friends
     friends_list.sort_by { |friend| [friend.last_name, friend.first_name] }
   end
+
+  def can_review?(homebrew)
+    !homebrew.reviews.persisted.any? { |review| review.reviewer == self }
+  end
 end

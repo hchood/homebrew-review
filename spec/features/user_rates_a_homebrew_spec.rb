@@ -17,16 +17,18 @@ feature "User reviews a homebrew", %Q{
   context "authenticated user" do
     context "friends with brewer" do
       before :each do
-        homebrew = FactoryGirl.create(:homebrew)
-        @review = FactoryGirl.build(:review, homebrew: homebrew)
-        friendship = FactoryGirl.create(:friendship, user: homebrew.user)
+        @homebrew = FactoryGirl.create(:homebrew)
+        friendship = FactoryGirl.create(:friendship, user: @homebrew.user)
         @user = friendship.friend
+        @review = FactoryGirl.build(:review,
+          homebrew: @homebrew, reviewer: @user)
 
         login_as(@user)
-        visit homebrew_path(homebrew)
       end
 
       scenario "successfully adds a review" do
+        visit homebrew_path(@homebrew)
+
         select @review.rating, from: "Rating"
         fill_in "Comments", with: @review.body
         click_on "Submit"
@@ -36,13 +38,19 @@ feature "User reviews a homebrew", %Q{
       end
 
       scenario "with missing attributes" do
+        visit homebrew_path(@homebrew)
         click_on "Submit"
 
         expect(page).to have_content "Your review could not be saved."
         expect(page).to have_content "can't be blank"
       end
 
-      scenario "already rated homebrew"
+      scenario "already reviewed homebrew" do
+        @review.save
+        visit homebrew_path(@homebrew)
+
+        expect(page).to_not have_content "Review this beer:"
+      end
     end
 
     scenario "not friends with brewer"

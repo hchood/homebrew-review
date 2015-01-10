@@ -2,7 +2,11 @@ class Homebrew < ActiveRecord::Base
   paginates_per 20
 
   belongs_to :user
-  has_many :reviews
+  has_many :reviews do
+    def persisted
+      select { |review| review if review.persisted? }
+    end
+  end
   has_many :taggings
   has_many :tags, through: :taggings
 
