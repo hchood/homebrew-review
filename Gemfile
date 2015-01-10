@@ -27,6 +27,7 @@ gem "unicorn"
 gem "devise"
 gem "kaminari"
 gem "versionist"
+gem "jbuilder"
 
 group :development do
   gem "spring"
