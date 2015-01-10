@@ -12,6 +12,18 @@
   <%= "Tags: #{@homebrew.tag_names}" %>
 </div>
 
+<div>
+  <% @homebrew.reviews.each do |review| %>
+    <div>
+      <%= "#{review.rating} stars" %>
+      <%= "by #{review.reviewer.full_name}" %>
+      <% if !review.body.blank? %>
+        <%= review.body %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
 <div id="review-form">
   <%= simple_form_for([@homebrew, @review]) do |f| %>
     <%= f.error_notification %>
@@ -22,7 +34,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, "Submit" %>
     </div>
   <% end %>
 </div>
