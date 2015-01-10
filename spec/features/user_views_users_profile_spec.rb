@@ -21,7 +21,7 @@ feature "User views a user's profile", %Q{
     end
 
     scenario "user has added homebrews and has friends" do
-      beers = FactoryGirl.create_list(:homebrew, 3, user: @user)
+      beers = FactoryGirl.create_list(:homebrew, 3, brewer: @user)
       friendships = FactoryGirl.create_list(:friendship, 2, user: @user)
 
       visit user_path(@user)

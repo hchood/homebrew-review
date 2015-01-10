@@ -1,7 +1,7 @@
 class Homebrew < ActiveRecord::Base
   paginates_per 20
 
-  belongs_to :user
+  belongs_to :brewer, class_name: "User"
   has_many :reviews do
     def persisted
       select { |review| review if review.persisted? }
@@ -10,7 +10,7 @@ class Homebrew < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
 
-  validates :user, presence: true
+  validates :brewer, presence: true
   validates :name,
     presence: true,
     uniqueness: { scope: :date_brewed,
@@ -28,7 +28,7 @@ class Homebrew < ActiveRecord::Base
   end
 
   def brewer_name
-    "#{user.first_name} #{user.last_name}"
+    "#{brewer.first_name} #{brewer.last_name}"
   end
 
   def tag_names
