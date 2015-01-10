@@ -7,6 +7,7 @@ class HomebrewsController < ApplicationController
 
   def show
     @homebrew = Homebrew.find(params[:id])
+    @review = @homebrew.reviews.build
   end
 
   def new

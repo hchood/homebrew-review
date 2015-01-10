@@ -11,3 +11,18 @@
 <div>
   <%= "Tags: #{@homebrew.tag_names}" %>
 </div>
+
+<div id="review-form">
+  <%= simple_form_for([@homebrew, @review]) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :rating, collection: 1..5, required: true, autofocus: true %>
+      <%= f.input :body, label: "Comments" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
