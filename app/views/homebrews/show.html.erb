@@ -11,3 +11,34 @@
 <div>
   <%= "Tags: #{@homebrew.tag_names}" %>
 </div>
+
+<div>
+  <% @homebrew.reviews.persisted.each do |review| %>
+    <div>
+      <%= "#{review.rating} stars" %>
+      <%= "by #{review.reviewer.full_name}" %>
+      <% if !review.body.blank? %>
+        <%= review.body %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if user_signed_in? && current_user.can_review?(@homebrew) %>
+  <div id="review-form">
+    <h4>Review this beer:</h4>
+
+    <%= simple_form_for([@homebrew, @review]) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :rating, collection: 1..5, required: true, include_blank: true, autofocus: true %>
+        <%= f.input :body, label: "Comments" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Submit" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

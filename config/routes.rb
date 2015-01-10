@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :friendships, only: :destroy
 
-  resources :homebrews, only: [:index, :show, :new, :create]
+  resources :homebrews, only: [:index, :show, :new, :create] do
+    resources :reviews, only: :create
+  end
 end
