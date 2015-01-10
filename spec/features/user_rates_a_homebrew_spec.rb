@@ -13,17 +13,22 @@ feature "User reviews a homebrew", %Q{
   # - [ ] I must provide a rating between 1 and 5 stars.
   # - [ ] I can optionally provide a comment.
 
-
   context "authenticated user" do
+    before :each do
+      @homebrew = FactoryGirl.create(:homebrew)
+      @user = FactoryGirl.create(:user)
+      @review = FactoryGirl.build(:review,
+        homebrew: @homebrew, reviewer: @user)
+
+      login_as(@user)
+    end
+
     context "friends with brewer" do
       before :each do
-        @homebrew = FactoryGirl.create(:homebrew)
-        friendship = FactoryGirl.create(:friendship, user: @homebrew.user)
-        @user = friendship.friend
-        @review = FactoryGirl.build(:review,
-          homebrew: @homebrew, reviewer: @user)
-
-        login_as(@user)
+        friendship = FactoryGirl.create(:friendship,
+          user: @homebrew.user,
+          friend: @user
+        )
       end
 
       scenario "successfully adds a review" do
@@ -53,10 +58,19 @@ feature "User reviews a homebrew", %Q{
       end
     end
 
-    scenario "not friends with brewer"
+    scenario "not friends with brewer" do
+      visit homebrew_path(@homebrew)
+
+      expect(page).to_not have_content "Review this beer:"
+    end
   end
 
   context "unauthenticated user" do
-    scenario "does not see form on homebrew page"
+    scenario "does not see form on homebrew page" do
+      homebrew = FactoryGirl.create(:homebrew)
+      visit homebrew_path(homebrew)
+
+      expect(page).to_not have_content "Review this beer:"
+    end
   end
 end

@@ -46,6 +46,15 @@ class User < ActiveRecord::Base
   end
 
   def can_review?(homebrew)
-    !homebrew.reviews.persisted.any? { |review| review.reviewer == self }
+    (brewed?(homebrew) || friends_with?(homebrew.user)) &&
+      !reviewed?(homebrew)
+  end
+
+  def reviewed?(homebrew)
+    homebrew.reviews.persisted.any? { |review| review.reviewer == self }
+  end
+
+  def brewed?(homebrew)
+    homebrew.user == self
   end
 end
