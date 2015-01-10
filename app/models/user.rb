@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   paginates_per 20
 
   has_many :homebrews,
+    foreign_key: :brewer_id,
     dependent: :destroy
   has_many :friendships,
     dependent: :destroy
@@ -46,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def can_review?(homebrew)
-    (brewed?(homebrew) || friends_with?(homebrew.user)) &&
+    (brewed?(homebrew) || friends_with?(homebrew.brewer)) &&
       !reviewed?(homebrew)
   end
 
@@ -55,6 +56,6 @@ class User < ActiveRecord::Base
   end
 
   def brewed?(homebrew)
-    homebrew.user == self
+    homebrew.brewer == self
   end
 end

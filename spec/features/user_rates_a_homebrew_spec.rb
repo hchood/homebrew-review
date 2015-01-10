@@ -26,7 +26,7 @@ feature "User reviews a homebrew", %Q{
     context "friends with brewer" do
       before :each do
         friendship = FactoryGirl.create(:friendship,
-          user: @homebrew.user,
+          user: @homebrew.brewer,
           friend: @user
         )
       end
