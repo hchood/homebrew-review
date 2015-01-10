@@ -35,7 +35,13 @@ feature "User reviews a homebrew", %Q{
         expect(page).to have_content @review.body
       end
 
-      scenario "with missing attributes"
+      scenario "with missing attributes" do
+        click_on "Submit"
+
+        expect(page).to have_content "Your review could not be saved."
+        expect(page).to have_content "can't be blank"
+      end
+
       scenario "already rated homebrew"
     end
 

@@ -5,9 +5,12 @@ class ReviewsController < ApplicationController
     @homebrew = Homebrew.find(params[:homebrew_id])
     @review = @homebrew.reviews.build(review_params)
     @review.reviewer = current_user
-    
+
     if @review.save
       redirect_to @homebrew, notice: "Your review has been added."
+    else
+      flash.now[:notice] = "Your review could not be saved."
+      render "homebrews/show"
     end
   end
 
