@@ -11,7 +11,7 @@ describe API::V1::HomebrewsController do
         created_at: Time.zone.now - 1.year)
       ordered_homebrews = [old_homebrew, older_homebrew, oldest_homebrew]
 
-      get v1_homebrews_url, {}, {}
+      get :index, {}, {"Accept" => "application/vnd.mycompany.com; version=1"}
 
       expect(response.status).to eq 200
       expect(response).to match_response_schema("homebrews")
