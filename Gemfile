@@ -55,6 +55,7 @@ group :test do
   gem "timecop"
   gem "webmock"
   gem "valid_attribute"
+  gem "json-schema"
 end
 
 group :staging, :production do
