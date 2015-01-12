@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Homebrews set",
+  "type": "object",
+  "properties": {
+    "homebrews": {
+      "type": "array",
+      "items": {
+        "title": "Homebrew",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "brewer_id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date_brewed": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tag_ids": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

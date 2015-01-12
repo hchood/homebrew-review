@@ -26,6 +26,8 @@ gem "uglifier"
 gem "unicorn"
 gem "devise"
 gem "kaminari"
+gem "versionist"
+gem "jbuilder"
 
 group :development do
   gem "spring"
@@ -53,6 +55,7 @@ group :test do
   gem "timecop"
   gem "webmock"
   gem "valid_attribute"
+  gem "json-schema"
 end
 
 group :staging, :production do

@@ -12,4 +12,16 @@ Rails.application.routes.draw do
   resources :homebrews, only: [:index, :show, :new, :create] do
     resources :reviews, only: :create
   end
+
+  namespace :api do
+    api_version(
+      :module => "V1",
+      :header => {:name => "Accept",
+      :value => "application/vnd.mycompany.com; version=1"},
+      :defaults => {:format => :json},
+      default: true
+    ) do
+      resources :homebrews, only: :index
+    end
+  end
 end
