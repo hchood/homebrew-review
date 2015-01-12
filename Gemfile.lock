@@ -140,6 +140,7 @@ GEM
     json (1.8.1)
     json-schema (2.5.0)
       addressable (~> 2.3)
+    json_schema (0.4.0)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -164,6 +165,9 @@ GEM
     normalize-rails (3.0.1)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    prmd (0.7.0)
+      erubis (~> 2.7)
+      json_schema (~> 0.3, >= 0.3.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -318,6 +322,7 @@ DEPENDENCIES
   newrelic_rpm
   normalize-rails (~> 3.0.0)
   pg
+  prmd
   pry-rails
   rack-timeout
   rails (= 4.2.0)
