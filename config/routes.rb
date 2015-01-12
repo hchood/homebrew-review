@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       :defaults => {:format => :json},
       default: true
     ) do
-      resources :homebrews, only: :index
+      resources :homebrews, only: [:index, :show]
     end
   end
 end
