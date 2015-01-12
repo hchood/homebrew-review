@@ -54,27 +54,6 @@
   "description": "The app's users",
   "links": [
     {
-      "description": "Create a new user.",
-      "href": "/users",
-      "method": "POST",
-      "rel": "create",
-      "schema": {
-        "properties": {
-        },
-        "type": [
-          "object"
-        ]
-      },
-      "title": "Create"
-    },
-    {
-      "description": "Delete an existing user.",
-      "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
-      "method": "DELETE",
-      "rel": "destroy",
-      "title": "Delete"
-    },
-    {
       "description": "Info for existing user.",
       "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
       "method": "GET",
@@ -87,20 +66,6 @@
       "method": "GET",
       "rel": "instances",
       "title": "List"
-    },
-    {
-      "description": "Update an existing user.",
-      "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
-      "method": "PATCH",
-      "rel": "update",
-      "schema": {
-        "properties": {
-        },
-        "type": [
-          "object"
-        ]
-      },
-      "title": "Update"
     }
   ],
   "properties": {
