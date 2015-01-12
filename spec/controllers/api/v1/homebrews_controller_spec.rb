@@ -17,4 +17,15 @@ describe API::V1::HomebrewsController do
       expect(response).to match_response_schema("homebrews")
     end
   end
+
+  describe "Fetching a homebrew" do
+    it "returns a single homebrew" do
+      homebrew = FactoryGirl.create(:homebrew)
+
+      get :show, { id: homebrew.id }, {  "Accept" => "application/vnd.mycompany.com; version=1" }
+
+      expect(response.status).to eq 200
+      expect(response).to match_response_schema("homebrew")
+    end
+  end
 end
