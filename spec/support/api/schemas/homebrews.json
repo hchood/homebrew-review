@@ -19,7 +19,8 @@
             "type": "string"
           },
           "date_brewed": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "description": {
             "type": "string"
