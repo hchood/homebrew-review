@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Users set",
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "title": "User",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "unique identifier of user",
+              "example": 5,
+              "type": [
+                "number"
+              ]
+            },
+            "created_at": {
+              "description": "when user was created",
+              "example": "2012-01-01T12:00:00Z",
+              "format": "date-time",
+              "type": [
+                "string"
+              ]
+            },
+            "updated_at": {
+              "description": "when user was updated",
+              "example": "2012-01-01T12:00:00Z",
+              "format": "date-time",
+              "type": [
+                "string"
+              ]
+            },
+            "email": {
+              "description": "email address of user",
+              "example": "bobloblaw@bobloblawslawblog.com",
+              "format": "email",
+              "type": [
+                "string"
+              ]
+            },
+            "first_name": {
+              "description": "first name of user",
+              "example": "Bob",
+              "type": [
+                "string"
+              ]
+            },
+            "last_name": {
+              "description": "last name of user",
+              "example": "Loblaw",
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "required": ["id", "created_at", "updated_at", "email", "first_name", "last_name"]
+        }
+      }
+    }
+  }
+}

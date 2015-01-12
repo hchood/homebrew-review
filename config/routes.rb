@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       default: true
     ) do
       resources :homebrews, only: [:index, :show]
-      resources :users, only: :show
+      resources :users, only: [:index, :show]
     end
   end
 end
