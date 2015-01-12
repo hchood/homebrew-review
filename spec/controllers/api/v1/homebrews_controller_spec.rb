@@ -9,7 +9,6 @@ describe API::V1::HomebrewsController do
         created_at: Time.zone.now - 1.day)
       oldest_homebrew = FactoryGirl.create(:homebrew,
         created_at: Time.zone.now - 1.year)
-      ordered_homebrews = [old_homebrew, older_homebrew, oldest_homebrew]
 
       get :index, {}, { "Accept" => "application/vnd.mycompany.com; version=1" }
 
