@@ -1,5 +1,5 @@
 class API::V1::HomebrewsController < ApplicationController
-  before_action :ensure_valid_api_key!, only: :create
+  before_action :ensure_valid_api_key!, only: [:create, :update]
 
   def index
     @homebrews = Homebrew.all
@@ -19,6 +19,12 @@ class API::V1::HomebrewsController < ApplicationController
     end
   end
 
+  def update
+    @homebrew = Homebrew.find(params[:id])
+
+    authorize_to_edit(@homebrew)
+  end
+
   protected
 
   def homebrew_params
@@ -31,6 +37,10 @@ class API::V1::HomebrewsController < ApplicationController
 
   def api_key
     @api_key ||= APIKey.from_request(request)
+  end
+
+  def authorize_to_edit(homebrew)
+    authenticated_user.brewed?(homebrew) || render_unauthorized
   end
 
   def authenticated_user
