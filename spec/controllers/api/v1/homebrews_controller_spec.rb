@@ -64,7 +64,7 @@ describe API::V1::HomebrewsController do
       post :create, homebrew: { name: "Extra Hoppy IPA" }
 
       expect(response.status).to eq 401
-      expect(response.body).to eq "Bad credentials"
+      expect(response.body).to include "Bad credentials"
     end
   end
 end
