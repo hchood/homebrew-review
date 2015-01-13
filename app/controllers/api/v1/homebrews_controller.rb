@@ -14,6 +14,8 @@ class API::V1::HomebrewsController < ApplicationController
 
     if @homebrew.save
       render :show, status: 201
+    else
+      render json: { errors: @homebrew.errors }, status: 422
     end
   end
 

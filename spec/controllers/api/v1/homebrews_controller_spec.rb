@@ -58,7 +58,7 @@ describe API::V1::HomebrewsController do
           post :create, homebrew: { invalid: "" }
 
           expect(response.status).to eq 422
-          expect(response.body).to eq "Unprocessable entity"
+          expect(response.body).to include "can't be blank"
         end
       end
     end
