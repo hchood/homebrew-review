@@ -1,3 +1,81 @@
+## Homebrews
+Hombrewed beers that users submit for their friends to review
+
+### Attributes
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **created_at** | *date-time* | when homebrew was created | `"2012-01-01T12:00:00Z"` |
+| **id** | *number* | unique identifier of homebrew | `10` |
+| **updated_at** | *date-time* | when homebrew was updated | `"2012-01-01T12:00:00Z"` |
+| **brewer_id** | *number* | id of the user who added the homebrew | `5` |
+| **name** | *string* | name the user gave the homebrew | `"Extra-hoppy IPA"` |
+| **date_brewed** | *date-time* | name the user gave the homebrew | `"2015-01-12T20:20:47-05:00"` |
+| **description** | *string* | an optional description of the homebrew | `"A hoppier version of my regular IPA."` |
+### Homebrews Info
+Info for existing homebrew.
+
+```
+GET /homebrews/{homebrew_id}
+```
+
+
+#### Curl Example
+```bash
+$ curl -n -X GET http://localhost:3000/api//homebrews/$HOMEBREW_ID
+
+```
+
+
+#### Response Example
+```
+HTTP/1.1 200 OK
+```
+```json
+{
+  "created_at": "2012-01-01T12:00:00Z",
+  "id": 10,
+  "updated_at": "2012-01-01T12:00:00Z",
+  "brewer_id": 5,
+  "name": "Extra-hoppy IPA",
+  "date_brewed": "2015-01-12T20:20:47-05:00",
+  "description": "A hoppier version of my regular IPA."
+}
+```
+
+### Homebrews List
+List existing homebrews.
+
+```
+GET /homebrews
+```
+
+
+#### Curl Example
+```bash
+$ curl -n -X GET http://localhost:3000/api//homebrews
+
+```
+
+
+#### Response Example
+```
+HTTP/1.1 200 OK
+```
+```json
+[
+  {
+    "created_at": "2012-01-01T12:00:00Z",
+    "id": 10,
+    "updated_at": "2012-01-01T12:00:00Z",
+    "brewer_id": 5,
+    "name": "Extra-hoppy IPA",
+    "date_brewed": "2015-01-12T20:20:47-05:00",
+    "description": "A hoppier version of my regular IPA."
+  }
+]
+```
+
+
 ## Users
 The app's users
 
