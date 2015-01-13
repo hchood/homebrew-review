@@ -61,27 +61,6 @@
   "description": "Hombrewed beers that users submit for their friends to review",
   "links": [
     {
-      "description": "Create a new homebrew.",
-      "href": "/homebrews",
-      "method": "POST",
-      "rel": "create",
-      "schema": {
-        "properties": {
-        },
-        "type": [
-          "object"
-        ]
-      },
-      "title": "Create"
-    },
-    {
-      "description": "Delete an existing homebrew.",
-      "href": "/homebrews/{(%2Fschemata%2Fhomebrew%23%2Fdefinitions%2Fidentity)}",
-      "method": "DELETE",
-      "rel": "destroy",
-      "title": "Delete"
-    },
-    {
       "description": "Info for existing homebrew.",
       "href": "/homebrews/{(%2Fschemata%2Fhomebrew%23%2Fdefinitions%2Fidentity)}",
       "method": "GET",
@@ -94,20 +73,6 @@
       "method": "GET",
       "rel": "instances",
       "title": "List"
-    },
-    {
-      "description": "Update an existing homebrew.",
-      "href": "/homebrews/{(%2Fschemata%2Fhomebrew%23%2Fdefinitions%2Fidentity)}",
-      "method": "PATCH",
-      "rel": "update",
-      "schema": {
-        "properties": {
-        },
-        "type": [
-          "object"
-        ]
-      },
-      "title": "Update"
     }
   ],
   "properties": {
