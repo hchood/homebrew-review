@@ -70,4 +70,62 @@ describe API::V1::HomebrewsController do
       expect(response.body).to include "Bad credentials"
     end
   end
+
+  describe "Updating a homebrew" do
+    context "with access token" do
+      let(:api_key) { FactoryGirl.create(:api_key) }
+      let(:current_user) { api_key.user }
+
+      before do
+        mock_authentication_with(api_key)
+      end
+
+      context "with brewer's access token" do
+        let(:homebrew) { FactoryGirl.create(:homebrew, brewer: current_user) }
+
+        context "with valid attributes" do
+          it "updates the homebrew" do
+            expect {
+              put :update, id: homebrew.id, homebrew: { description: "Best beer ever." }
+            }.to_not change { Homebrew.count }
+
+            homebrew.reload
+
+            expect(response.status).to eq 200
+            expect(response).to match_response_schema("homebrew")
+            expect(homebrew.description).to eq "Best beer ever."
+          end
+        end
+
+        context "with invalid attributes" do
+          it "is not successful" do
+            put :update, id: homebrew.id, homebrew: { name: "" }
+
+            expect(response.status).to eq 422
+            expect(response.body).to include "can't be blank"
+          end
+        end
+      end
+
+      context "with different user's access token" do
+        it "is unauthorized" do
+          homebrew = FactoryGirl.create(:homebrew)
+
+          put :update, id: homebrew.id, homebrew: { description: "Best beer ever." }
+
+          expect(response.status).to eq 401
+          expect(response.body).to include "Bad credentials"
+        end
+      end
+    end
+
+    context "without valid access token" do
+      it "is unauthorized" do
+        put :update, id: 'anything'
+
+        expect(response.status).to eq 401
+        expect(response.body).to include "Bad credentials"
+      end
+    end
+  end
 end
