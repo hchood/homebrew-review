@@ -19,6 +19,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
   config.render_views = true
+  config.include Helpers::Controllers, type: :controller
 end
 
 ActiveRecord::Migration.maintain_test_schema!
