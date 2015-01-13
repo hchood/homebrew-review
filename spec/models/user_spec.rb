@@ -21,7 +21,13 @@ RSpec.describe User, :type => :model do
     it { should validate_uniqueness_of :email}
   end
 
+  describe "after_create callback" do
+    it "generates an API key" do
+      user = FactoryGirl.create(:user)
 
+      expect(user.api_keys.count).to eq 1
+    end
+  end
 
   describe "#all_friends" do
     let!(:user) { FactoryGirl.create(:user) }
