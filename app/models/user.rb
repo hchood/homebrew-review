@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
     homebrew.brewer == self
   end
 
+  def api_key
+    api_keys.where("expires_at > ?", Time.now).first || api_keys.create
+  end
+
   private
 
   def create_api_key

@@ -29,6 +29,24 @@ RSpec.describe User, :type => :model do
     end
   end
 
+  describe "#api_key" do
+    it "returns active API key for user" do
+      user = FactoryGirl.build_stubbed(:user)
+      api_key = FactoryGirl.create(:api_key, user: user)
+
+      expect(user.api_key).to eq api_key
+    end
+
+    it "generates a new API key if user has no active API keys" do
+      user = FactoryGirl.build_stubbed(:user)
+      inactive_api_key = FactoryGirl.create(:api_key,
+        user: user, expires_at: 1.day.ago)
+
+      expect(user.api_key).to_not eq inactive_api_key
+      expect(user.api_key.class).to eq APIKey 
+    end
+  end
+
   describe "#all_friends" do
     let!(:user) { FactoryGirl.create(:user) }
     
