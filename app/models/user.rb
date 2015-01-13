@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends,
     through: :inverse_friendships,
     source: :user
+  has_many :api_keys,
+    dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
