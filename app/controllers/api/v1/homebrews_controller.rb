@@ -10,9 +10,18 @@ class API::V1::HomebrewsController < ApplicationController
   end
 
   def create
+    @homebrew = authenticated_user.homebrews.build(homebrew_params)
+
+    if @homebrew.save
+      render :show, status: 201
+    end
   end
 
   protected
+
+  def homebrew_params
+    params.require(:homebrew).permit(:name, :date_brewed, :description)
+  end
 
   def ensure_valid_api_key!
     api_key || render_unauthorized
@@ -20,6 +29,10 @@ class API::V1::HomebrewsController < ApplicationController
 
   def api_key
     @api_key ||= APIKey.from_request(request)
+  end
+
+  def authenticated_user
+    api_key.user if api_key
   end
 
   def render_unauthorized
