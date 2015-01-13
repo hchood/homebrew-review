@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "definitions": {
+    "homebrew": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Homebrew Reviews - Homebrews",
+      "definitions": {
+        "id": {
+          "description": "unique identifier of homebrew",
+          "example": 10,
+          "type": [
+            "number"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/homebrew/definitions/id"
+        },
+        "created_at": {
+          "description": "when homebrew was created",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when homebrew was updated",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "brewer_id": {
+          "description": "id of the user who added the homebrew",
+          "example": 5,
+          "type": [
+            "number"
+          ]
+        },
+        "name": {
+          "description": "name the user gave the homebrew",
+          "example": "Extra-hoppy IPA",
+          "type": [
+            "string"
+          ]
+        },
+        "date_brewed": {
+          "description": "name the user gave the homebrew",
+          "example": "2015-01-12T20:20:47-05:00",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "description": {
+          "description": "an optional description of the homebrew",
+          "example": "A hoppier version of my regular IPA.",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "description": "Hombrewed beers that users submit for their friends to review",
+      "links": [
+        {
+          "description": "Info for existing homebrew.",
+          "href": "/homebrews/{(%23%2Fdefinitions%2Fhomebrew%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing homebrews.",
+          "href": "/homebrews",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/homebrew/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/homebrew/definitions/id"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/homebrew/definitions/updated_at"
+        },
+        "brewer_id": {
+          "$ref": "#/definitions/homebrew/definitions/brewer_id"
+        },
+        "name": {
+          "$ref": "#/definitions/homebrew/definitions/name"
+        },
+        "date_brewed": {
+          "$ref": "#/definitions/homebrew/definitions/date_brewed"
+        },
+        "description": {
+          "$ref": "#/definitions/homebrew/definitions/description"
+        }
+      },
+      "required": [
+        "id",
+        "brewer_id",
+        "name",
+        "date_brewed",
+        "created_at",
+        "updated_at"
+      ],
+      "type": [
+        "object"
+      ]
+    },
+    "user": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Homebrew Reviews - Users",
+      "definitions": {
+        "id": {
+          "description": "unique identifier of user",
+          "example": 5,
+          "type": [
+            "number"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/user/definitions/id"
+        },
+        "created_at": {
+          "description": "when user was created",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when user was updated",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "email": {
+          "description": "email address of user",
+          "example": "bobloblaw@bobloblawslawblog.com",
+          "format": "email",
+          "type": [
+            "string"
+          ]
+        },
+        "first_name": {
+          "description": "first name of user",
+          "example": "Bob",
+          "type": [
+            "string"
+          ]
+        },
+        "last_name": {
+          "description": "last name of user",
+          "example": "Loblaw",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "description": "The app's users",
+      "links": [
+        {
+          "description": "Info for existing user.",
+          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing users.",
+          "href": "/users",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/user/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/user/definitions/id"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/user/definitions/updated_at"
+        },
+        "email": {
+          "$ref": "#/definitions/user/definitions/email"
+        },
+        "first_name": {
+          "$ref": "#/definitions/user/definitions/first_name"
+        },
+        "last_name": {
+          "$ref": "#/definitions/user/definitions/last_name"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "email",
+        "first_name",
+        "last_name"
+      ],
+      "type": [
+        "object"
+      ]
+    }
+  },
+  "properties": {
+    "homebrew": {
+      "$ref": "#/definitions/homebrew"
+    },
+    "user": {
+      "$ref": "#/definitions/user"
+    }
+  },
+  "type": [
+    "object"
+  ],
+  "description": "Homebrew Reviews API",
+  "id": "homebrew-reviews",
+  "links": [
+    {
+      "href": "http://localhost:3000/api/",
+      "rel": "self"
+    }
+  ],
+  "title": "Homebrew Reviews API"
+}

@@ -1,0 +1,9 @@
+{
+  "description": "Homebrew Reviews API",
+  "id": "homebrew-reviews",
+  "links": [{
+   "href": "http://localhost:3000/api/",
+   "rel": "self"
+  }],
+  "title": "Homebrew Reviews API"
+}

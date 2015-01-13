@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Homebrew Reviews - Users",
+  "definitions": {
+    "id": {
+      "description": "unique identifier of user",
+      "example": 5,
+      "type": [
+        "number"
+      ]
+    },
+    "identity": {
+      "$ref": "/schemata/user#/definitions/id"
+    },
+    "created_at": {
+      "description": "when user was created",
+      "example": "2012-01-01T12:00:00Z",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "updated_at": {
+      "description": "when user was updated",
+      "example": "2012-01-01T12:00:00Z",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "email": {
+      "description": "email address of user",
+      "example": "bobloblaw@bobloblawslawblog.com",
+      "format": "email",
+      "type": [
+        "string"
+      ]
+    },
+    "first_name": {
+      "description": "first name of user",
+      "example": "Bob",
+      "type": [
+        "string"
+      ]
+    },
+    "last_name": {
+      "description": "last name of user",
+      "example": "Loblaw",
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "description": "The app's users",
+  "links": [
+    {
+      "description": "Info for existing user.",
+      "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "List existing users.",
+      "href": "/users",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List"
+    }
+  ],
+  "properties": {
+    "created_at": {
+      "$ref": "/schemata/user#/definitions/created_at"
+    },
+    "id": {
+      "$ref": "/schemata/user#/definitions/id"
+    },
+    "updated_at": {
+      "$ref": "/schemata/user#/definitions/updated_at"
+    },
+    "email": {
+      "$ref": "/schemata/user#/definitions/email"
+    },
+    "first_name": {
+      "$ref": "/schemata/user#/definitions/first_name"
+    },
+    "last_name": {
+      "$ref": "/schemata/user#/definitions/last_name"
+    }
+  },
+  "required": [
+    "id",
+    "created_at",
+    "updated_at",
+    "email",
+    "first_name",
+    "last_name"
+  ],
+  "type": [
+    "object"
+  ],
+  "id": "schemata/user"
+}

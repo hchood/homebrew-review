@@ -28,6 +28,7 @@ gem "devise"
 gem "kaminari"
 gem "versionist"
 gem "jbuilder"
+gem "prmd"
 
 group :development do
   gem "spring"

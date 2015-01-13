@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Homebrew Reviews - Homebrews",
+  "definitions": {
+    "id": {
+      "description": "unique identifier of homebrew",
+      "example": 10,
+      "type": [
+        "number"
+      ]
+    },
+    "identity": {
+      "$ref": "/schemata/homebrew#/definitions/id"
+    },
+    "created_at": {
+      "description": "when homebrew was created",
+      "example": "2012-01-01T12:00:00Z",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "updated_at": {
+      "description": "when homebrew was updated",
+      "example": "2012-01-01T12:00:00Z",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "brewer_id": {
+      "description": "id of the user who added the homebrew",
+      "example": 5,
+      "type": [
+        "number"
+      ]
+    },
+    "name": {
+      "description": "name the user gave the homebrew",
+      "example": "Extra-hoppy IPA",
+      "type": [
+        "string"
+      ]
+    },
+    "date_brewed": {
+      "description": "name the user gave the homebrew",
+      "example": "2015-01-12T20:20:47-05:00",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "description": {
+      "description": "an optional description of the homebrew",
+      "example": "A hoppier version of my regular IPA.",
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "description": "Hombrewed beers that users submit for their friends to review",
+  "links": [
+    {
+      "description": "Info for existing homebrew.",
+      "href": "/homebrews/{(%2Fschemata%2Fhomebrew%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "List existing homebrews.",
+      "href": "/homebrews",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List"
+    }
+  ],
+  "properties": {
+    "created_at": {
+      "$ref": "/schemata/homebrew#/definitions/created_at"
+    },
+    "id": {
+      "$ref": "/schemata/homebrew#/definitions/id"
+    },
+    "updated_at": {
+      "$ref": "/schemata/homebrew#/definitions/updated_at"
+    },
+    "brewer_id": {
+      "$ref": "/schemata/homebrew#/definitions/brewer_id"
+    },
+    "name": {
+      "$ref": "/schemata/homebrew#/definitions/name"
+    },
+    "date_brewed": {
+      "$ref": "/schemata/homebrew#/definitions/date_brewed"
+    },
+    "description": {
+      "$ref": "/schemata/homebrew#/definitions/description"
+    }
+  },
+  "required": [
+    "id",
+    "brewer_id",
+    "name",
+    "date_brewed",
+    "created_at",
+    "updated_at"
+  ],
+  "type": [
+    "object"
+  ],
+  "id": "schemata/homebrew"
+}
