@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   has_many :inverse_friends,
     through: :inverse_friendships,
     source: :user
+  has_many :api_keys,
+    dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  after_create :create_api_key
 
   def full_name
     "#{first_name} #{last_name}"
@@ -57,5 +61,15 @@ class User < ActiveRecord::Base
 
   def brewed?(homebrew)
     homebrew.brewer == self
+  end
+
+  def api_key
+    api_keys.where("expires_at > ?", Time.now).first || api_keys.create
+  end
+
+  private
+
+  def create_api_key
+    api_keys.create
   end
 end
