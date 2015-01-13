@@ -39,12 +39,15 @@ describe API::V1::HomebrewsController do
 
       context "with valid attributes" do
         it "creates a new homebrew" do
+          tags = FactoryGirl.create_list(:tag, 2)
           homebrew_attributes = FactoryGirl.attributes_for(:homebrew)
+          homebrew_attributes.merge!(tag_ids: [tags.first.id, tags.last.id])
           expect(Homebrew.count).to eq 0
 
           post :create, homebrew: homebrew_attributes
 
           expect(Homebrew.count).to eq 1
+          expect(Homebrew.first.tags.count).to eq 2
           expect(response.status).to eq 201
           expect(response).to match_response_schema("homebrew")
         end

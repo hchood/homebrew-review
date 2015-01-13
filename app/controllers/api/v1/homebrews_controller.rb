@@ -20,7 +20,7 @@ class API::V1::HomebrewsController < ApplicationController
   protected
 
   def homebrew_params
-    params.require(:homebrew).permit(:name, :date_brewed, :description)
+    params.require(:homebrew).permit(:name, :date_brewed, :description, tag_ids: [])
   end
 
   def ensure_valid_api_key!
