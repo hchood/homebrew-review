@@ -81,7 +81,7 @@ describe API::V1::HomebrewsController do
       end
 
       context "with brewer's access token" do
-        let(:homebrew) { FactoryGirl.create(:homebrew, brewer: current_user) }
+        let!(:homebrew) { FactoryGirl.create(:homebrew, brewer: current_user) }
 
         context "with valid attributes" do
           it "updates the homebrew" do

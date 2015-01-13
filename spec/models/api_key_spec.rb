@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe APIKey, :type => :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   describe "associations" do
     it { should belong_to :user }
   end
@@ -9,10 +11,35 @@ RSpec.describe APIKey, :type => :model do
     subject { FactoryGirl.build(:api_key, expires_at: Time.now) }
 
     it { should validate_presence_of :user }
-    it { should validate_presence_of :access_token }
-    it { should validate_presence_of :expires_at }
-
     it { should validate_uniqueness_of :access_token }
+  end
+
+  describe "before_validation callback" do
+    it "generates an access token" do
+      user = FactoryGirl.build_stubbed(:user)
+      api_key = APIKey.create!(user: user)
+
+      expect(api_key.access_token).to_not be_nil
+    end
+
+    it "sets an expires_at" do
+      travel_to Time.zone.at(0) do
+        user = FactoryGirl.build_stubbed(:user)
+        api_key = APIKey.create!(user: user)
+
+        expect(api_key.expires_at).to eq 30.days.from_now
+      end
+    end
+
+    it "uses provided expires_at if given" do
+      travel_to Time.zone.at(0) do
+        user = FactoryGirl.build_stubbed(:user)
+        expires_at = 10.days.from_now
+        api_key = APIKey.create!(user: user, expires_at: expires_at)
+
+        expect(api_key.expires_at).to eq expires_at
+      end
+    end
   end
 
   describe ".from_request" do

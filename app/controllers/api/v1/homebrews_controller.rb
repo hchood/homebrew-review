@@ -22,7 +22,13 @@ class API::V1::HomebrewsController < ApplicationController
   def update
     @homebrew = Homebrew.find(params[:id])
 
-    authorize_to_edit(@homebrew)
+    return render_unauthorized if !authenticated_user.brewed?(@homebrew)
+
+    if @homebrew.update(homebrew_params)
+      render :show, status: 200
+    else
+      render json: { errors: @homebrew.errors }, status: 422
+    end
   end
 
   protected
@@ -37,10 +43,6 @@ class API::V1::HomebrewsController < ApplicationController
 
   def api_key
     @api_key ||= APIKey.from_request(request)
-  end
-
-  def authorize_to_edit(homebrew)
-    authenticated_user.brewed?(homebrew) || render_unauthorized
   end
 
   def authenticated_user
