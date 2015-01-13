@@ -40,4 +40,7 @@ Rails.application.configure do
   config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { host: 'localhost:7000' }
+  
+  # Don't raise error if unpermitted params are passed to controllers
+  config.action_controller.action_on_unpermitted_parameters = :log
 end
