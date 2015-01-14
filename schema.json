@@ -76,6 +76,56 @@
           "method": "GET",
           "rel": "instances",
           "title": "List"
+        },
+        {
+          "description": "Create a new homebrew.",
+          "href": "/homebrews",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "name": {
+                "$ref": "#/definitions/homebrew/definitions/name"
+              },
+              "date_brewed": {
+                "$ref": "#/definitions/homebrew/definitions/date_brewed"
+              },
+              "description": {
+                "$ref": "#/definitions/homebrew/definitions/description"
+              }
+            },
+            "required": [
+              "name",
+              "date_brewed"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Update an existing homebrew.",
+          "href": "/homebrews/{(%23%2Fdefinitions%2Fhomebrew%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "name": {
+                "$ref": "#/definitions/homebrew/definitions/name"
+              },
+              "date_brewed": {
+                "$ref": "#/definitions/homebrew/definitions/date_brewed"
+              },
+              "description": {
+                "$ref": "#/definitions/homebrew/definitions/description"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
         }
       ],
       "properties": {

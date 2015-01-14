@@ -75,6 +75,101 @@ HTTP/1.1 200 OK
 ]
 ```
 
+### Homebrews Create
+Create a new homebrew.
+
+```
+POST /homebrews
+```
+
+#### Required Parameters
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **name** | *string* | name the user gave the homebrew | `"Extra-hoppy IPA"` |
+| **date_brewed** | *date-time* | name the user gave the homebrew | `"2015-01-12T20:20:47-05:00"` |
+
+
+#### Optional Parameters
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **description** | *string* | an optional description of the homebrew | `"A hoppier version of my regular IPA."` |
+
+
+#### Curl Example
+```bash
+$ curl -n -X POST http://localhost:3000/api//homebrews \
+  -H "Content-Type: application/json" \
+ \
+  -d '{
+  "name": "Extra-hoppy IPA",
+  "date_brewed": "2015-01-12T20:20:47-05:00",
+  "description": "A hoppier version of my regular IPA."
+}'
+
+```
+
+
+#### Response Example
+```
+HTTP/1.1 201 Created
+```
+```json
+{
+  "created_at": "2012-01-01T12:00:00Z",
+  "id": 10,
+  "updated_at": "2012-01-01T12:00:00Z",
+  "brewer_id": 5,
+  "name": "Extra-hoppy IPA",
+  "date_brewed": "2015-01-12T20:20:47-05:00",
+  "description": "A hoppier version of my regular IPA."
+}
+```
+
+### Homebrews Update
+Update an existing homebrew.
+
+```
+PATCH /homebrews/{homebrew_id}
+```
+
+#### Optional Parameters
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **name** | *string* | name the user gave the homebrew | `"Extra-hoppy IPA"` |
+| **date_brewed** | *date-time* | name the user gave the homebrew | `"2015-01-12T20:20:47-05:00"` |
+| **description** | *string* | an optional description of the homebrew | `"A hoppier version of my regular IPA."` |
+
+
+#### Curl Example
+```bash
+$ curl -n -X PATCH http://localhost:3000/api//homebrews/$HOMEBREW_ID \
+  -H "Content-Type: application/json" \
+ \
+  -d '{
+  "name": "Extra-hoppy IPA",
+  "date_brewed": "2015-01-12T20:20:47-05:00",
+  "description": "A hoppier version of my regular IPA."
+}'
+
+```
+
+
+#### Response Example
+```
+HTTP/1.1 200 OK
+```
+```json
+{
+  "created_at": "2012-01-01T12:00:00Z",
+  "id": 10,
+  "updated_at": "2012-01-01T12:00:00Z",
+  "brewer_id": 5,
+  "name": "Extra-hoppy IPA",
+  "date_brewed": "2015-01-12T20:20:47-05:00",
+  "description": "A hoppier version of my regular IPA."
+}
+```
+
 
 ## Users
 The app's users
@@ -149,5 +244,3 @@ HTTP/1.1 200 OK
   }
 ]
 ```
-
-
